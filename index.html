@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <!--  Font Awesome Kit -->
+    <script
+      src="https://kit.fontawesome.com/c8414e59dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Vanilla CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <title>Game | Tic Tac Toe</title>
+  </head>
+  <body>
+
+    <dialog >
+      <!-- <span>Choose:</span> -->
+      <button id="player-x">X</button>
+      <button id="player-o">O</button>
+    </dialog>
+
+    <div id="pop-start" class="pop-start">
+      <div class="pop-start-content">
+        <button id="start" type="button">Game Start</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="title">
+        <h1>TIC TAC TOE</h1>
+        <i
+          class="fa-solid fa-circle-info fa-beat-fade"
+          style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075"
+        ></i>
+      </div>
+      <p id="choice-text">Your Turn</p>
+      <div class="board">
+        <div class="box">1</div>
+        <div class="box">X</div>
+        <div class="box">O</div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
