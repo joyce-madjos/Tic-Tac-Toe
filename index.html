@@ -23,14 +23,23 @@
   <body>
 
     <dialog >
-      <!-- <span>Choose:</span> -->
       <button id="player-x">X</button>
       <button id="player-o">O</button>
     </dialog>
 
     <div id="pop-start" class="pop-start">
-      <div class="pop-start-content">
+      <div class="pop-start-content"> 
         <button id="start" type="button">Game Start</button>
+      </div>
+    </div>
+
+    <div id="result" class="pop-start">
+      <!-- class="fa-solid fa-repeat" -->
+        <div class="result-content">
+        <p id="result-text" >WINNER!</p>
+        <i class="fa-solid fa-repeat fa-beat custom-style"
+        style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075"></i>
+       
       </div>
     </div>
 
@@ -38,21 +47,20 @@
       <div class="title">
         <h1>TIC TAC TOE</h1>
         <i
-          class="fa-solid fa-circle-info fa-beat-fade"
-          style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075"
+          class="fa-solid fa-circle-info custom-style"
         ></i>
       </div>
       <p id="choice-text">Your Turn</p>
       <div class="board">
-        <div class="box">1</div>
-        <div class="box">X</div>
-        <div class="box">O</div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
+        <div id="1" class="box"></div>
+        <div id="2" class="box"></div>
+        <div id="3" class="box"></div>
+        <div id="4" class="box"></div>
+        <div id="5" class="box"></div>
+        <div id="6" class="box"></div>
+        <div id="7" class="box"></div>
+        <div id="8" class="box"></div>
+        <div id="9" class="box"></div>
       </div>
     </div>
     <script src="script.js"></script>
