@@ -5,7 +5,8 @@ let playerChooseX = document.getElementById("player-x");
 let playerChooseO = document.getElementById("player-o");
 let gameStart = document.getElementById("pop-start");
 let choiceText = document.getElementById("choice-text");
-let resultText = document.getElementById("result");
+let resultText = document.getElementById("result-text");
+let resultContainer = document.getElementById("result");
 let restartGame = document.getElementById("repeat-game");
 
 start.addEventListener("click", function () {
@@ -23,8 +24,8 @@ playerChooseX.addEventListener("click", function () {
 playerChooseO.addEventListener("click", function () {
   dialog.close();
   choiceText.style.display = "block";
-  choiceText.innerHTML = "Your choice: " + player + "";
   player = "O";
+  choiceText.innerHTML = "Your choice: " + player + "";
 });
 
 restartGame.addEventListener("click", function () {
@@ -53,19 +54,16 @@ for (i = 1; i <= 9; i++) {
   (function (id) {
     element.addEventListener("click", function () {
       let index = id - 1;
-
+      
       // Display player's move
       elements[index].innerHTML = player;
-
-      elements[index].addEventListener("click", (e) => {
-        e.preventDefault();
-      });
-
+      elementsValue[index] = "1";
       checkWinner();
+
+
       let computerChoice = checkAvailability();
 
       // Change the value of the element in the array to 1
-      elementsValue[index] = "1";
 
       let computer;
       if (player === "X") {
@@ -75,15 +73,27 @@ for (i = 1; i <= 9; i++) {
       }
 
       elements[computerChoice].innerHTML = computer;
+      elementsValue[computerChoice] = "2";
+      console.log(elementsValue);
     });
   })(id);
 }
 
+function disableElements() {
+  const buttons = document.querySelectorAll(".box");
+  for (let i = 0; i < buttons.length; i++) {
+    const button = buttons[i];
+    if (button.textContent.trim().length > 0) {
+      button.disabled = true;
+    }
+  }
+}
+
 function checkAvailability() {
-  const elements = document.querySelectorAll(".box");
+  const allElements = document.querySelectorAll(".box");
   const emptyElements = [];
-  for (let i = 0; i < elements.length; i++) {
-    const element = elements[i];
+  for (let i = 0; i < allElements.length; i++) {
+    const element = allElements[i];
     if (element.textContent.trim().length === 0) {
       emptyElements.push(i);
     }
@@ -99,38 +109,77 @@ function sum() {
   let elementsValueNumber = elementsValue.map(Number);
   return {
     firstRow:
-      elementsValueNumber[0] + elementsValueNumber[1] + elementsValueNumber[2],
+      elementsValueNumber[0] == "1" && elementsValueNumber[1]  == "1" && elementsValueNumber[2] == "1",
     secondRow:
-      elementsValueNumber[3] + elementsValueNumber[4] + elementsValueNumber[5],
+      elementsValueNumber[3] == "1" && elementsValueNumber[4] == "1" && elementsValueNumber[5] == "1",
     thirdRow:
-      elementsValueNumber[6] + elementsValueNumber[7] + elementsValueNumber[8],
+      elementsValueNumber[6] == "1" && elementsValueNumber[7] == "1" && elementsValueNumber[8] == "1",
     firstColumn:
-      elementsValueNumber[0] + elementsValueNumber[3] + elementsValueNumber[6],
+      elementsValueNumber[0] == "1" && elementsValueNumber[3] == "1" && elementsValueNumber[6] == "1",
     secondColumn:
-      elementsValueNumber[1] + elementsValueNumber[4] + elementsValueNumber[7],
+      elementsValueNumber[1] == "1" && elementsValueNumber[4] == "1" && elementsValueNumber[7] == "1",
     thirdColumn:
-      elementsValueNumber[2] + elementsValueNumber[5] + elementsValueNumber[8],
+      elementsValueNumber[2] == "1" && elementsValueNumber[5] == "1" && elementsValueNumber[8] == "1",
     firstDiagonal:
-      elementsValueNumber[0] + elementsValueNumber[4] + elementsValueNumber[8],
+      elementsValueNumber[0] == "1" && elementsValueNumber[4] == "1" && elementsValueNumber[8] == "1",
     secondDiagonal:
-      elementsValueNumber[2] + elementsValueNumber[4] + elementsValueNumber[6],
+      elementsValueNumber[2] == "1" && elementsValueNumber[4] == "1" && elementsValueNumber[6] == "1",
+    
+    checkComputerWinFirstRow:
+      elementsValueNumber[0] == "2" && elementsValueNumber[1]  == "2" && elementsValueNumber[2] == "2",
+    checkComputerWinSecondRow:
+      elementsValueNumber[3] == "2" && elementsValueNumber[4] == "2" && elementsValueNumber[5] == "2",
+    checkComputerWinThirdRow:
+      elementsValueNumber[6] === "2" && elementsValueNumber[7] === "2" && elementsValueNumber[8] === "2",
+    checkComputerWinFirstColumn:
+      elementsValueNumber[0] == "2" && elementsValueNumber[3] == "2" && elementsValueNumber[6] == "2",
+    checkComputerWinSecondColumn:
+      elementsValueNumber[1] == "2" && elementsValueNumber[4] == "2" && elementsValueNumber[7] == "2",
+    checkComputerWinThirdColumn:
+      elementsValueNumber[2] == "2" && elementsValueNumber[5] == "2" && elementsValueNumber[8] == "2",
+    checkComputerWinFirstDiagonal:
+      elementsValueNumber[0] == "2" && elementsValueNumber[4] == "2" && elementsValueNumber[8] == "2",
+    checkComputerWinSecondDiagonal:
+      elementsValueNumber[2] == "2" && elementsValueNumber[4] == "2" && elementsValueNumber[6] == "2"
+
   };
 }
 
 function checkWinner() {
   let result = new sum();
-
+  console.log(result);
   if (
-    result.firstRow === 3 ||
-    result.secondRow === 3 ||
-    result.thirdRow === 3 ||
-    result.firstColumn === 3 ||
-    result.secondColumn === 3 ||
-    result.thirdColumn === 3 ||
-    result.firstDiagonal === 3 ||
-    result.secondDiagonal === 3
+    result.firstRow === true ||
+    result.secondRow === true ||
+    result.thirdRow === true ||
+    result.firstColumn === true ||
+    result.secondColumn === true ||
+    result.thirdColumn === true ||
+    result.firstDiagonal === true ||
+    result.secondDiagonal === true
   ) {
-    resultText.style.display = "block";
+    resultContainer.style.display = "block";
+    resultText.innerHTML = "WINNER!";
+  } 
+  
+  else if (
+    result.checkComputerWinFirstRow === true || 
+    result.checkComputerWinSecondRow === true ||
+    result.checkComputerWinThirdRow === true ||
+    result.checkComputerWinFirstColumn === true ||
+    result.checkComputerWinSecondColumn === true ||
+    result.checkComputerWinThirdColumn === true ||
+    result.checkComputerWinFirstDiagonal === true ||
+    result.checkComputerWinSecondDiagonal === true
+
+  )   {
+    resultContainer.style.display = "block";
+    resultText.innerHTML = "YOU LOSE";
+  }
+
+  else{
+    resultContainer.style.display = "none";
+    // resultText.innerHTML = "NO WINNER";
   }
 }
 

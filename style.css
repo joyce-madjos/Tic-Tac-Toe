@@ -142,6 +142,7 @@ dialog{
   align-items: center;
   font-size: 3rem;
   color: black;
+  background-color: var(--background-color);
  
 }
 
