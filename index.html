@@ -16,6 +16,8 @@
       src="https://kit.fontawesome.com/c8414e59dd.js"
       crossorigin="anonymous"
     ></script>
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="reset.css" />
     <!-- Vanilla CSS -->
     <link rel="stylesheet" href="style.css" />
     <title>Game | Tic Tac Toe</title>
@@ -37,7 +39,7 @@
       <!-- class="fa-solid fa-repeat" -->
         <div class="result-content">
         <p id="result-text" >WINNER!</p>
-        <i class="fa-solid fa-repeat fa-beat custom-style"
+        <i id="repeat-game" class="fa-solid fa-repeat fa-beat custom-style"
         style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075"></i>
        
       </div>
@@ -50,9 +52,9 @@
           class="fa-solid fa-circle-info custom-style"
         ></i>
       </div>
-      <p id="choice-text">Your Turn</p>
+      <p id="choice-text"></p>
       <div class="board">
-        <div id="1" class="box"></div>
+        <button id="1" class="box"></button>
         <div id="2" class="box"></div>
         <div id="3" class="box"></div>
         <div id="4" class="box"></div>
